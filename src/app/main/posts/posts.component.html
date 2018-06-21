@@ -1,0 +1,53 @@
+<!-- Posts -->
+<div  *ngIf="!postSelected">
+<article
+  class="post"
+  *ngFor="let postEl of posts"
+>
+  <header>
+    <div class="title">
+      <h2><a [routerLink]="['/posts', postEl.id]">{{ postEl.title }}</a></h2>
+      <p>{{ postEl.description }}</p>
+    </div>
+    <div class="meta">
+      <time class="published" datetime="2015-11-01">{{ postEl.date }}</time>
+      <a href="" class="author">
+        <span class="name">{{ postEl.author }}</span>
+        <img [src]="postEl.avatarImage" alt="{{ postEl.author }}" />
+      </a>
+    </div>
+  </header>
+  <a [routerLink]="['/posts', postEl.id]" class="image featured"><img [src]="postEl.imagePath" alt="{{ postEl.title }}" /></a>
+  <p>{{ postEl.postText }}</p>
+  <footer>
+    <ul class="actions">
+      <li>
+        <!--<a style="cursor: pointer" class="button big" (click)="readMore(postEl)">Continue Reading</a>-->
+        <a class="button big" [routerLink]="['/posts', postEl.id]">Continue Reading</a>
+      </li>
+    </ul>
+    <ul class="stats">
+      <li><a href="">{{ postEl.category }}</a></li>
+      <li><a href="" class="icon fa-heart">{{ postEl.likesCount }}</a></li>
+      <li><a href="" class="icon fa-comment">{{ postEl.commentsCount }}</a></li>
+    </ul>
+  </footer>
+</article>
+
+<!-- Pagination -->
+<ul class="actions pagination">
+  <li><a href="" class="disabled button big previous">Previous Page</a></li>
+  <li><a href="" class="button big next">Next Page</a></li>
+</ul>
+</div>
+
+<app-post-alone
+  *ngIf="postSelected && !editSelected"
+  (editSelected)="editSelected = 1"
+></app-post-alone>
+
+<app-post-edit
+  *ngIf="postSelected && editSelected"
+  [thisPost]="postSelected"
+  [editMode]="editSelected"
+></app-post-edit>
