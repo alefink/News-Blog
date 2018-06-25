@@ -2,54 +2,55 @@
 
   <header>
     <div class="title">
-      <h2 *ngIf="editMode">Edit</h2>
-      <h2 *ngIf="!editMode">New</h2>
+      <h2 *ngIf="isEdit">Edit</h2>
+      <h2 *ngIf="!isEdit">New</h2>
     </div>
     <div class="meta">
-      <time class="published" datetime="2015-10-18">{{ thisPost.date }}</time>
-      <a href="#" class="author"><span class="name" >{{ thisPost.author }}</span><img src="{{ thisPost.avatarImage }}" alt="" /></a>
+      <time class="published" datetime="new Date()}">{{ selectedPost.date }}</time>
+      <a href="#" class="author"><span class="name" >{{ selectedPost.author }}</span><img src="{{ selectedPost.avatarImage }}" alt="" /></a>
     </div>
   </header>
 
   <section>
-
-    <form method="post" action="#">
+    <div class="box alt">
+    <!--<p class="aster" *ngIf="!editForm.valid && editForm.touched">Please check and enter all required data:</p>-->
+    <form (ngSubmit)="onSubmit()" #editForm="ngForm">
 
       <div class="row uniform">
 
         <div class="12u$">
-          <span>Post title:</span>
-          <input type="text" name="post-title" id="post-title" value="{{ thisPost.title }}" placeholder="Post title" />
+          <span>Post title: <i class="aster">*</i></span>
+          <input type="text" name="title" id="post-title" ngModel="{{ selectedPost.title }}" placeholder="Post title" required />
         </div>
 
         <div class="12u$">
-          <span>Post description:</span>
-          <input type="text" name="post-description" id="post-description" value="{{ thisPost.description }}" placeholder="Post description" />
+          <span>Post description: <i class="aster">*</i></span>
+          <input type="text" name="description" id="post-description" ngModel="{{ selectedPost.description }}" placeholder="Post description" required />
         </div>
 
         <div class="12u$">
-          <span>Image path:</span>
-          <input type="text" name="image-path" id="image-path" value="{{ thisPost.imagePath }}" placeholder="Image path" />
+          <span>Image path: <i class="aster">*</i></span>
+          <input type="text" name="imagePath" id="image-path" ngModel="{{ selectedPost.imagePath }}" placeholder="Image path" required />
         </div>
 
 
         <div class="12u$">
-          <span>Post preview text (500 characters max) :</span>
-          <textarea name="post-text" id="post-preview-text" placeholder="Post preview text" rows="5">{{ thisPost.postText }}</textarea>
+          <span>Post preview text (500 characters max - {{ selectedPost.postText ? selectedPost.postText.length : 0}}): <i class="aster">*</i></span>
+          <textarea maxlength="500" name="postText" id="post-preview-text" ngModel="{{ selectedPost.postText }}" placeholder="Post preview text" rows="5" required ></textarea>
         </div>
 
-        <div class="12u$">
-          <span>Post text:</span>
-          <textarea name="post-text" id="post-text" placeholder="Post text" rows="10">{{ thisPost.postText }}</textarea>
-        </div>
+        <!--<div class="12u$">-->
+          <!--<span>Post text:</span>-->
+          <!--<textarea name="post-full-text" id="postFullText" placeholder="Post text" rows="10"></textarea>-->
+        <!--</div>-->
 
 
         <div class="6u 12u$(xsmall)">
-          <span>Select category:</span>
+          <label for="category">Select category:</label>
           <div class="select-wrapper">
-            <select name="demo-category" id="demo-category">
-              <option value="1">General</option>
-              <option value="2">Other</option>
+            <select name="category" id="category" [ngModel]="'General'">
+              <option value="General">General</option>
+              <option value="Other">Other</option>
             </select>
           </div>
         </div>
@@ -57,13 +58,14 @@
         <div class="6u 12u$(xsmall) align-right">
           <p></p>
           <ul class="actions">
-            <li><input class="icon fa-save" type="submit" value="Save" /></li>
-            <li><input type="reset" value="Close" /></li>
+            <li><button type="submit" class="icon fa-save" value="Save" [disabled]="!editForm.valid">Save</button></li>
+            <li><input routerLink="/manage" type="reset" value="Close" /></li>
           </ul>
         </div>
 
       </div>
     </form>
+    </div>
   </section>
 
 

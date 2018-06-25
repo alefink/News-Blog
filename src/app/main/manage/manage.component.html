@@ -1,0 +1,35 @@
+<section class="post">
+
+  <h1>Manage posts:</h1>
+
+  <div class="table-wrapper">
+    <table class="alt">
+      <thead>
+      <tr>
+        <th>ID:</th>
+        <th>Title:</th>
+        <th>Action:</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let postEl of posts">
+        <td>{{ postEl.id }}</td>
+        <td>{{ postEl.title }}</td>
+        <td>
+          <a [routerLink]="['/posts', postEl.id, 'edit']" class="button small">edit</a>
+        </td>
+        <td>
+          <button class="button small" (click)="onDelete(postEl.id)">delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <ul class="actions align-center">
+      <li><a [routerLink]="['/posts', posts[posts.length-1].id + 1, 'edit']" class="button">New</a></li>
+      <li><a routerLink="/posts" class="button">Back</a></li>
+    </ul>
+
+  </div>
+</section>

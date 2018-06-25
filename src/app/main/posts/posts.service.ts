@@ -54,15 +54,47 @@ export class PostsService {
       128),
   ];
 
-  getPosts() {
+  getAllPosts() {
     return this.posts.slice();
   }
 
-  addPost(post: Posts) {
-    this.posts.push(post);
+  getPost(id: number) {
+    return this.posts.find(
+      (s) => {
+        return s.id === id;
+      }
+    );
   }
 
-  deletePost(post: Posts) {
+  updatePost(id: number, postEdited: Posts) {
+    const post = this.posts.find(
+      (s) => {
+        return s.id === id;
+      }
+    );
+    if (post) {
+      this.posts[id - 1] = postEdited;
+    } else {
+      this.posts.push(postEdited);
+    }
+  }
+
+  deletePost(id: number) {
+    const post = this.posts.find(
+      (s) => {
+        return s.id === id;
+      }
+    );
+    if (post) {
+      this.posts.splice(id - 1, 1);
+    }
+  }
+
+  getDate() {
+    const months = [ 'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December' ];
+    const month = months[new Date().getMonth()];
+    return ( month + ' ' + new Date().getDate() + ', ' + new Date().getFullYear());
   }
 
 }

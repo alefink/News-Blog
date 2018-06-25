@@ -13,24 +13,18 @@ import { PostsService } from '../posts.service';
 })
 export class PostAloneComponent implements OnInit {
 
-  selectedPostId: number;
+  private postId: number;
   selectedPost: Posts;
 
   posts: Posts[];
 
   constructor(private postsService: PostsService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.posts = this.postsService.getAllPosts();
+    this.route.params.subscribe(params => this.postId = +params.id);
 
-    this.posts = this.postsService.getPosts();
-
-    this.selectedPostId = +this.route.snapshot.params['id'];
-    for (const postEl of this.posts) {
-      if (postEl.id === this.selectedPostId ) {
-        this.selectedPost = postEl;
-      }
-    }
-
+    this.selectedPost = this.postsService.getPost(this.postId);
   }
 }

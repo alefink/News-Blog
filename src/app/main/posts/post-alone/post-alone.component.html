@@ -27,8 +27,9 @@
   </section>
 
   <ul class="actions align-center">
-    <li><a style="cursor: pointer" class="button">Edit</a></li>
-    <li><a href="#" class="button">Delete</a></li>
+    <li><a routerLink="/posts" class="button">Back</a></li>
+    <li><a [routerLink]="['/posts', selectedPost.id, 'edit']" class="button">Edit</a></li>
+    <li><a href="#" class="button disabled">Delete</a></li>
   </ul>
 
 </article>
