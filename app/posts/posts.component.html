@@ -1,0 +1,57 @@
+<!-- Posts -->
+<section id="main" *ngIf="posts.length">
+  <article
+    class="post"
+    *ngFor="let postEl of postsShown"
+  >
+    <header>
+      <div class="title">
+        <h2><a [routerLink]="['/posts', postEl.id]">{{ postEl.title }}</a></h2>
+        <p>{{ postEl.description }}</p>
+      </div>
+      <div class="meta">
+        <time class="published" [attr.datetime]="postEl.date">{{ postEl.date | date:'MMMM d, y' }}</time>
+        <a href="" class="author">
+          <span class="name">{{ postEl.author }}</span>
+          <img [src]="postEl.avatarImage" alt="{{ postEl.author }}" />
+        </a>
+      </div>
+    </header>
+    <a [routerLink]="['/posts', postEl.id]" class="image featured"><img [src]="postEl.imagePath" alt="{{ postEl.title }}" /></a>
+    <p>{{ postEl.postText }}</p>
+    <footer>
+      <ul class="actions">
+        <li>
+          <a class="button big" [routerLink]="['/posts', postEl.id]">Continue Reading</a>
+        </li>
+      </ul>
+      <ul class="stats">
+        <li><a href="">{{ postEl.category }}</a></li>
+        <li><a href="" class="icon fa-heart">{{ postEl.likesCount }}</a></li>
+        <li><a href="" class="icon fa-comment">{{ postEl.commentsCount }}</a></li>
+      </ul>
+    </footer>
+  </article>
+
+<!-- Pagination -->
+  <ul class="actions pagination">
+
+    <li><button class="button big previous"
+                [disabled]="!page"
+                (click)="onPrevious()">Previous Page</button></li>
+
+    <li><button class="button big next"
+                [disabled]="postsShown.length < 3 || postsShown[postsShown.length - 1] === posts[0]"
+                (click)="onNext()">Next Page</button></li>
+  </ul>
+</section>
+
+<section id="main" *ngIf="!posts.length">
+  <article class="post">
+    <h1>Loading...</h1>
+  </article>
+</section>
+
+<!--<button class="button big" (click)="onSave()">Add posts to base</button>&nbsp;-->
+<!--<button class="button big" (click)="onLoad()">Get posts from base</button>-->
+

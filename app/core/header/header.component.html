@@ -1,0 +1,29 @@
+  <h1><a routerLink="">Future Imperfect</a></h1>
+  <nav class="links">
+    <ul>
+      <li><a routerLink="/posts">Home</a></li>
+      <li><a routerLink="/menu">Any incorrect link</a></li>
+      <li *ngIf="authService.isAuthenticated()"><a routerLink="/manage">Posts manage</a></li>
+      <li *ngIf="authService.isAuthenticated()"><a routerLink="/auth-manage">Users manage</a></li>
+    </ul>
+  </nav>
+
+  <section class="user-block" *ngIf="authService.isAuthenticated()">
+    <a class="author"><img alt="" src="/assets/images/avatar.jpg"></a>
+    <p>Greetings, <span class="name"> Jane Doe </span></p>
+    <button class="button small" (click)="onLogOut()">Logout</button>
+  </section>
+
+  <nav class="main">
+    <ul>
+      <li class="search">
+        <a style="cursor: pointer" class="fa-search" appClassToggle>Search</a>
+        <form id="search" method="get" action="#">
+          <input type="text" name="query" placeholder="Search" />
+        </form>
+      </li>
+      <li class="menu">
+        <a style="cursor: pointer" class="fa-bars" (click)="onMenuToggle()">Menu</a>
+      </li>
+    </ul>
+  </nav>

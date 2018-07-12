@@ -1,0 +1,21 @@
+.user-block {
+  margin-top: -5px;
+}
+
+.user-block .author {
+  display: inline-block;
+  margin: 0 10px -20px;
+}
+
+.user-block p {
+  display: inline-block;
+}
+
+.user-block p .name {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.user-block button {
+  margin: 0 20px;
+}

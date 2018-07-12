@@ -1,0 +1,54 @@
+:host {
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* Post */
+
+.post {
+  padding: 3em 3em 1em 3em ;
+  background: #ffffff;
+  border: solid 1px rgba(160, 160, 160, 0.3);
+  margin: 0 0 3em 0;
+  position: relative;
+}
+
+@media screen and (max-width: 980px) {
+
+  .post {
+    border-left: 0;
+    border-right: 0;
+    left: -3em;
+    width: calc(100% + (3em * 2));
+  }
+
+}
+
+@media screen and (max-width: 736px) {
+
+  .post {
+    padding: 1.5em 1.5em 0.1em 1.5em ;
+    left: -1.5em;
+    margin: 0 0 2em 0;
+    width: calc(100% + (1.5em * 2));
+  }
+
+}
+
+.alt th:nth-child(1),
+.alt th:nth-child(3),
+.alt th:nth-child(4) {
+  width: 5%;
+}
+
+.alt td:nth-child(3) a {
+  background: lightgreen;
+}
+
+.alt td:nth-child(4) a, .alt td:nth-child(4) button {
+  background: lightpink;
+}
+
+.alt td a:hover, .alt td button:hover {
+  background: transparent;
+}

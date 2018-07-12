@@ -1,0 +1,16 @@
+<div id="wrapper">
+
+  <!-- Header -->
+  <app-header id="header"></app-header>
+
+  <!-- Main -->
+  <router-outlet></router-outlet>
+
+  <!-- Sidebar -->
+  <app-sidebar id="sidebar"></app-sidebar>
+
+</div>
+
+<!-- Menu -->
+<div class="overlay" (click)="menuHide()"></div>
+<app-menu id="menu"></app-menu>
