@@ -2,4 +2,8 @@
 
 Angular 6 based news blog
 
-Temporary link for live view: [http://tikhonkey.ucoz.net/](http://tikhonkey.ucoz.net/index.html)
+Link for live view: [https://tikhonkey.000webhostapp.com/](https://tikhonkey.000webhostapp.com/)
+
+Backend - firebase
+
+Login button is in sandwich menu, for credentials please send me a message
